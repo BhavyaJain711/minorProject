@@ -1,30 +1,38 @@
 import { useState } from 'react'
-import {ThemeContextProvider} from './ThemeContext'
+import { ThemeContextProvider } from './ThemeContext'
 import './App.css'
 import { Button, Typography, Container } from '@mui/material'
 import ToggleTheme from './ThemeContext/ToggleTheme'
 import { NavbarDemo } from './components/navbar'
-import { BrowserRouter } from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import RequireAuth from './components/Auth/RequireAuth'
+import Unauthorized from './components/Auth/Unauthorized'
+import Layout from './components/Auth/Layout'
 
+import Signup from './components/Auth/Signup'
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
-    <BrowserRouter>
-    <ThemeContextProvider>
-    <Container>
-    <NavbarDemo />
-      <Button className="my-8" variant="contained" color="primary" onClick={() => setCount((count) => count + 1)}>
-        {count}
-      </Button>
-      <Typography variant="h1">Hello Vite + React!</Typography>
-      <ToggleTheme />
-    </Container>
-    </ThemeContextProvider>
-    </BrowserRouter>
+      <ThemeContextProvider>
+        <BrowserRouter>
+          <NavbarDemo />
+          <Routes>
+            <Route path="/" element={<Layout />}>
+              <Route path="/" element={<RequireAuth allowedRoles={["null"]} />}>
+                <Route path='test' element={<Signup />} />
+              </Route>
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </ThemeContextProvider>
     </>
   )
 }
 
 export default App
+
+{/* <Container>
+      <Typography variant="h1">Hello Vite + React!</Typography>
+      <ToggleTheme />
+    </Container> */}
