@@ -32,7 +32,7 @@ const LoginForms = () => {
     });
 
     return (
-        <Container
+        <Container maxWidth="sm"
         >
             <form onSubmit={formik.handleSubmit}>
                 <Grid container spacing={2}>

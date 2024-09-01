@@ -4,7 +4,7 @@ import { ThemeProvider } from "@mui/material";
 export const ThemeContext = createContext(null);
 
 export const ThemeContextProvider = ({ children }) => {
-    const systemThemeMode = window.matchMedia("(prefers-color-scheme: dark)")
+    const systemThemeMode = window.matchMedia("(prefers-color-scheme: dark)").matches
         ? "dark"
         : "light";
     const [themeMode, setThemeMode] = useState(systemThemeMode);
@@ -23,7 +23,14 @@ export const ThemeContextProvider = ({ children }) => {
             setThemeMode(persistedTheme);
             setTheme(AppThemes[persistedTheme]);
         }
-    }, []);
+
+        // Apply TailwindCSS dark mode class
+        if (themeMode === "dark") {
+            document.documentElement.classList.add("dark");
+        } else {
+            document.documentElement.classList.remove("dark");
+        }
+    }, [themeMode]);
 
     return (
         <ThemeContext.Provider value={{ themeMode, toggleTheme }}>

@@ -13,7 +13,6 @@ const ToggleTheme = () => {
         <Button  onClick={handleSwitchThemeMode}>
             {themeMode === "light" ? "Dark" : "Light"} Mode
         </Button>
-        <p>{themeMode}</p>
     </>
   )
 }

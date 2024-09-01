@@ -13,10 +13,10 @@ const persistedStore=persistStore(store);
 // import {BrowserRouter} from 'react-router-dom';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 // injectStore(store);
-// const baseURL = __APP_ENV__.REACT_APP_API_BASE_URL;
+const baseURL = __APP_ENV__.REACT_APP_API_BASE_URL;
 // console.log(baseURL);
-// axios.defaults.baseURL=baseURL;
-// authAxios.defaults.baseURL=baseURL;
+axios.defaults.baseURL=baseURL;
+authAxios.defaults.baseURL=baseURL;
 root.render(
   <Provider store={store} >
   <PersistGate loading={null} persistor={persistedStore}>
