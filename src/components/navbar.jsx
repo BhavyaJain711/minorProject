@@ -16,7 +16,7 @@ export function NavbarDemo() {
 function Navbar({ className }) {
   const [active, setActive] = useState(null);
   
-  const user = useSelector((state) => state.role);
+  const user = useSelector((state) => state.role)!=='null';
   return (
     <div
       className={cn("fixed top-10 inset-x-0 max-w-2xl mx-auto z-50", className)}
@@ -70,8 +70,10 @@ function Navbar({ className }) {
           <ToggleTheme />
         </MenuItem>
         <MenuItem setActive={setActive} active={active} item="Profile">
-          {user&&<>
+          {user?<>
           <HoveredLink to="/logout">Logout</HoveredLink>
+          </>:<>
+          <HoveredLink to="/login">Login</HoveredLink>
           </>}
         </MenuItem>
       </Menu>
