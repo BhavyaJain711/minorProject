@@ -15,6 +15,8 @@ import Logout from './components/Auth/Logout'
 import Home from './pages/Home'
 import PublicHome from './pages/PublicHome'
 import DownloadExcelSheet from './components/teacher/DownloadExcel'
+import UploadExcel from './components/teacher/uploadExcel'
+import Result from './components/student/Result'
 function App() {
 
   return (
@@ -37,6 +39,7 @@ function App() {
             <Route path="/" element={<Layout />}>
               <Route path="/" element={<RequireAuth allowedRoles={["teacher"]} />}>
                 <Route path="/dash" element={<DownloadExcelSheet />} />
+                <Route path="/uploadExcel" element={<Result />} />
               </Route>
             </Route>
             <Route path="/" element={<Layout />}>

@@ -16,20 +16,20 @@ export function NavbarDemo() {
 function Navbar({ className }) {
   const [active, setActive] = useState(null);
   
-  const user = useSelector((state) => state.role)!=='null';
+  const user = useSelector((state) => state.role);
   return (
     <div
       className={cn("fixed top-10 inset-x-0 max-w-2xl mx-auto z-50", className)}
     >
       <Menu setActive={setActive}>
-        <MenuItem setActive={setActive} active={active} item="Services">
+        {user=="teacher"&&<MenuItem setActive={setActive} active={active} item="Services">
           <div className="flex flex-col space-y-4 text-sm">
             <HoveredLink to="/shop/billing">Generate Bill</HoveredLink>
             <HoveredLink to="/shop/verify">Verify Shop Accounts</HoveredLink>
             <HoveredLink to="/shop/bill-history">Check Billing History</HoveredLink>
             <HoveredLink to="/shop/cities">Add Cities</HoveredLink>
           </div>
-        </MenuItem>
+        </MenuItem>}
         <MenuItem setActive={setActive} active={active} item="Products">
           <div className="  text-sm grid grid-cols-2 gap-10 p-4">
             <ProductItem
