@@ -21,14 +21,16 @@ export default function LoginFormDemo() {
     const handleSubmit = async (values) => {
         try {
             const res = await axios.post('/auth/login', values).then((res) => {
-                const { accessToken, refreshToken, role } = res.data;
-                store.dispatch(setLogin({ token: accessToken, refreshToken: refreshToken, role: role || "Customer" }))
+                const { token, refreshToken, role } = res.data;
+                store.dispatch(setLogin({ token: token, refreshToken: refreshToken, role: role || "Customer" }))
             })
         } catch (error) {
             console.error('Login error:', error);
             alert('An error occurred. Please try again.');
         }
-        navigate('/home');
+        setTimeout(() => {
+            navigate('/home')
+        }, 1000)
     };
 
     return (

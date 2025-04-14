@@ -14,6 +14,7 @@ import LoginFormDemo from './components/Auth/Login'
 import Logout from './components/Auth/Logout'
 import Home from './pages/Home'
 import PublicHome from './pages/PublicHome'
+import DownloadExcelSheet from './components/teacher/DownloadExcel'
 function App() {
 
   return (
@@ -34,6 +35,11 @@ function App() {
               </Route>
             </Route>
             <Route path="/" element={<Layout />}>
+              <Route path="/" element={<RequireAuth allowedRoles={["teacher"]} />}>
+                <Route path="/dash" element={<DownloadExcelSheet />} />
+              </Route>
+            </Route>
+            <Route path="/" element={<Layout />}>
               <Route path="/" element={<RequireAuth allowedRoles={['null',null]} />}>
                 <Route path='signup' element={<Signup />} />
                 <Route path='login' element={<LoginFormDemo />} />
@@ -41,7 +47,7 @@ function App() {
             </Route>
             {/* Logged in User Routes */}
             <Route path="/" element={<Layout />}>
-              <Route path="/" element={<RequireAuth allowedRoles={["student"]} />}>
+              <Route path="/" element={<RequireAuth allowedRoles={["student","admin","teacher"]} />}>
                 <Route path="/logout" element={<Logout />} />
               </Route>
             </Route>

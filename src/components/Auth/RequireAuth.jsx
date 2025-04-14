@@ -5,7 +5,7 @@ const RequireAuth = ({ allowedRoles }) => {
     const role=useSelector((state)=>state.role);
     const user = useSelector((state) => state.user);
     const location = useLocation();
-    console.log(role);
+    console.log(role,allowedRoles);
 
     return (
         role && allowedRoles.includes(role)
